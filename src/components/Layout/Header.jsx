@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
@@ -79,9 +80,9 @@ const Header = () => {
                   <nav className="tgmenu__nav">
                     <div className="col-xl-3 col-lg-3">
                       <div className="logo">
-                        <a href="index-5.html">
+                        <Link to="/">
                           <img src="assets/img/logo/logo.png" alt="Logo" />
-                        </a>
+                        </Link>
                       </div>
                     </div>
                     <div className="col-xl-6 col-lg-6">
@@ -127,10 +128,10 @@ const Header = () => {
                           </li>
                           <li className="header-cart header-cart-two">
                             <strong className="price">$0.00</strong>
-                            <a href="shipping-cart.html">
+                            <Link to="/cart">
                               <i className="flaticon-shopping-bag" />
                               <span>0</span>
-                            </a>
+                            </Link>
                           </li>
                         </ul>
                       </div>
@@ -147,9 +148,9 @@ const Header = () => {
                       <i className="fas fa-times" />
                     </div>
                     <div className="nav-logo">
-                      <a href="index-2.html">
+                      <Link to="/">
                         <img src="assets/img/logo/logo.png" alt="Logo" />
-                      </a>
+                      </Link>
                     </div>
                     <div className="tgmobile__search">
                       <form action="#">
@@ -214,109 +215,110 @@ const Header = () => {
                   <div className="tgmenu__navbar-wrap tgmenu__main-menu d-none d-lg-flex">
                     <ul className="navigation">
                       <li className="active menu-item-has-children">
-                        <a href="#">Shop by category</a>
+                        <a style={{ cursor: "pointer" }}>Shop by category</a>
+
                         <ul className="sub-menu">
                           <li className="active">
-                            <a href="index-2.html">Dog Deals</a>
+                            <Link to="/productList">Dog Deals</Link>
                           </li>
                           <li>
-                            <a href="index-3.html">Cat Deals</a>
+                            <Link to="/productList">Cat Deals</Link>
                           </li>
                           <li>
-                            <a href="index-4.html">Fish Deals</a>
+                            <Link to="/productList">Fish Deals</Link>
                           </li>
                           <li>
-                            <a href="index-5.html">Birds Deals</a>
+                            <Link to="/productList">Birds Deals</Link>
                           </li>
                           <li>
-                            <a href="index-5.html">Rabbit Deals</a>
+                            <Link to="/productList">Rabbit Deals</Link>
                           </li>
                         </ul>
                       </li>
                       <li className="menu-item-has-children">
-                        <a href="#">Pet care</a>
+                        <a style={{ cursor: "pointer" }}>Pet care</a>
                         <ul className="sub-menu">
                           <li className="active">
-                            <a href="expertlist.html">
+                            <Link to="/animalList">
                               Pet Care &amp; Veterinary
-                            </a>
+                            </Link>
                           </li>
                           <li>
-                            <a href="index-3.html">Pet Breed</a>
+                            <Link to="/animalList">Pet Breed</Link>
                           </li>
                           <li>
-                            <a href="petadopt.html">Pet Adopt</a>
+                            <Link to="/animalList">Pet Adopt</Link>
                           </li>
                         </ul>
                       </li>
                       <li className="menu-item-has-children">
-                        <a href="#">Dog</a>
+                        <a style={{ cursor: "pointer" }}>Dog</a>
                         <ul className="sub-menu">
                           <li className="active">
-                            <a href="index-2.html">Labrador Retriever</a>
+                            <Link to="/animalList">Labrador Retriever</Link>
                           </li>
                           <li>
-                            <a href="index-3.html">German Shepherd</a>
+                            <Link to="/animalList">German Shepherd</Link>
                           </li>
                           <li>
-                            <a href="index-4.html">Golden Retriever</a>
+                            <Link to="/animalList">Golden Retriever</Link>
                           </li>
                           <li>
-                            <a href="index-5.html">Bulldog</a>
+                            <Link to="/animalList">Bulldog</Link>
                           </li>
                           <li>
-                            <a href="index-5.html">Boxer</a>
+                            <Link to="/animalList">Boxer</Link>
                           </li>
                         </ul>
                       </li>
                       <li className="menu-item-has-children">
-                        <a href="#">Cat</a>
+                        <a style={{ cursor: "pointer" }}>Cat</a>
                         <ul className="sub-menu">
                           <li className="active">
-                            <a href="index-2.html">Persian</a>
+                            <Link to="/animalList">Persian</Link>
                           </li>
                           <li>
-                            <a href="index-3.html">Maine Coon</a>
+                            <Link to="/animalList">Maine Coon</Link>
                           </li>
                           <li>
-                            <a href="index-4.html">Siamese</a>
+                            <Link to="/animalList">Siamese</Link>
                           </li>
                           <li>
-                            <a href="index-5.html">British Shorthair</a>
+                            <Link to="/animalList">British Shorthair</Link>
                           </li>
                         </ul>
                       </li>
                       <li className="menu-item-has-children">
-                        <a href="#">Birds</a>
+                        <a style={{ cursor: "pointer" }}>Birds</a>
                         <ul className="sub-menu">
                           <li className="active">
-                            <a href="index-2.html">Parakeet (Budgerigar)</a>
+                            <Link to="/animalList">Parakeet (Budgerigar)</Link>
                           </li>
                           <li>
-                            <a href="index-3.html">Cockatiel </a>
+                            <Link to="/animalList">Cockatiel </Link>
                           </li>
                           <li>
-                            <a href="index-4.html">African Grey Parrot</a>
+                            <Link to="/animalList">African Grey Parrot</Link>
                           </li>
                           <li>
-                            <a href="index-5.html">Macaw </a>
+                            <Link to="/animalList">Macaw </Link>
                           </li>
                         </ul>
                       </li>
                       <li>
-                        <a href="petadopt.html">Pet Adopt</a>
+                        <Link to="/animalList">Pet Adopt</Link>
                       </li>
                       <li>
-                        <a href="about.html">Brand</a>
+                        <Link to="/doctorList">Doctors</Link>
                       </li>
                       <li className="menu-item-has-children">
                         <a href="#">Fish &amp; Aquarium</a>
                         <ul className="sub-menu">
                           <li>
-                            <a href="product.html">Our Shop</a>
+                            <Link to="/productList">Our Products</Link>
                           </li>
                           <li>
-                            <a href="product-details.html">Shop Details</a>
+                            <Link to="/storeList">Stores</Link>
                           </li>
                         </ul>
                       </li>
@@ -357,9 +359,9 @@ const Header = () => {
                     <i className="fas fa-times" />
                   </div>
                   <div className="nav-logo">
-                    <a href="index-2.html">
+                    <Link to="/">
                       <img src="assets/img/logo/logo.png" alt="Logo" />
-                    </a>
+                    </Link>
                   </div>
                   <div className="tgmobile__search">
                     <form action="#">
