@@ -1,7 +1,40 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 const Doctors = () => {
+  const apiUrl = import.meta.env.VITE_API_URL;
+  const [doctorData, setDoctorData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const fetchDoctorData = async () => {
+    try {
+      const response = await axios.get(`${apiUrl}api/user/getAllDoctors`);
+      console.log(response);
+
+      if (response.status === 200) {
+        setDoctorData(response?.data?.doctors);
+        setIsLoading(false);
+      }
+    } catch (error) {
+      console.log("Error fetching doctor data:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchDoctorData();
+  }, []);
+
+  const navigate = useNavigate();
+
+  const handleCardClick = (id) => {
+    navigate("/doctorsDetails", {
+      state: { doctorId: id },
+    });
+  };
+
   return (
     <div>
       <section className="our__expertise mt-20">
@@ -31,148 +64,54 @@ const Doctors = () => {
           </div>
           {/* Doctor Cards */}
           <div className="row justify-content-center">
-            {/* Doctor Card 1 */}
-            <div className="col-xl-3 col-lg-4 col-md-6">
-              <Link to="/doctorsDetails">
-                <div
-                  className="doc_post"
-                  onclick="window.location.href='doctor_details.html';"
-                >
-                  <div className="doc_post_pic">
-                    <img
-                      src="https://media.istockphoto.com/id/1346124900/photo/confident-successful-mature-doctor-at-hospital.jpg?s=612x612&w=0&k=20&c=S93n5iTDVG3_kJ9euNNUKVl9pgXTOdVQcI_oDGG-QlE="
-                      alt="Dr. Nitin Kandpal"
-                    />
-                  </div>
-                  <div className="doc_post_content">
-                    <h3 className="doc_name">Dr. Nitin Kandpal</h3>
-                    <p className="doc_specialty">Food Animal Veterinarians</p>
-                    <div className="product__reviews our_expertise_reviews">
-                      <div className="rating">
-                        <i className="fas fa-star" />
-                        <i className="fas fa-star" />
-                        <i className="fas fa-star" />
-                        <i className="fas fa-star" />
-                        <i className="fas fa-star" />
+            {isLoading ? (
+              <p>Loading...</p> // Show a loading message while the data is being fetched
+            ) : (
+              doctorData.map((doctor) => (
+                <div key={doctor._id} className="col-xl-3 col-lg-4 col-md-6">
+                  <button
+                    style={{ border: "none", background: "none", padding: 0 }}
+                    onClick={() => handleCardClick(doctor._id)}
+                  >
+                    <div className="doc_post">
+                      <div className="doc_post_pic">
+                        <img
+                          src={
+                            doctor.profilePicture
+                              ? `${apiUrl}${doctor.profilePicture}`
+                              : "https://placehold.it/100x100"
+                          }
+                          alt={doctor.name}
+                        />
                       </div>
-                      <span>(48 Reviews)</span>
+                      <div className="doc_post_content">
+                        <h3 className="doc_name">{doctor.name}</h3>
+                        <p className="doc_specialty">{doctor.specialization}</p>
+                        <div className="product__reviews our_expertise_reviews">
+                          <div className="rating">
+                            <i className="fas fa-star" />
+                            <i className="fas fa-star" />
+                            <i className="fas fa-star" />
+                            <i className="fas fa-star" />
+                            <i className="fas fa-star" />
+                          </div>
+                          <span>(48 Reviews)</span>{" "}
+                          {/* You can replace 48 with the actual number of reviews if available */}
+                        </div>
+                        <p>Exp: {doctor.experience}</p>
+                        <p className="doc__qual">
+                          <img
+                            src="assets/img/icon/icon8-degree-48.png"
+                            alt="Degree"
+                          />
+                          {doctor.education}
+                        </p>
+                      </div>
                     </div>
-                    <p>Exp : 7 years</p>
-                    <p className="doc__qual">
-                      <img
-                        src="assets/img/icon/icon8-degree-48.png"
-                        alt="img"
-                      />
-                      M.V.Sc.
-                    </p>
-                  </div>
+                  </button>
                 </div>
-              </Link>
-            </div>
-            {/* Doctor Card 2 */}
-            <div className="col-xl-3 col-lg-4 col-md-6">
-            <Link to="/doctorsDetails">
-              <div className="doc_post">
-                <div
-                  className="doc_post_pic"
-                  onclick="window.location.href='doctor_details.html';"
-                >
-                  <img
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQE-n-Eb5PPHCiRyGR1vpCKxiucX1RsoZ0gEA&s"
-                    alt="Dr. Aditi Tiwari"
-                  />
-                </div>
-                <div className="doc_post_content">
-                  <h3 className="doc_name">Dr. Aditi Tiwari</h3>
-                  <p className="doc_specialty">Animal Welfare Specialists</p>
-                  <div className="product__reviews our_expertise_reviews">
-                    <div className="rating">
-                      <i className="fas fa-star" />
-                      <i className="fas fa-star" />
-                      <i className="fas fa-star" />
-                      <i className="fas fa-star" />
-                      <i className="fas fa-star" />
-                    </div>
-                    <span>(48 Reviews)</span>
-                  </div>
-                  <p>Exp : 7 years</p>
-                  <p className="doc__qual">
-                    <img src="assets/img/icon/icon8-degree-48.png" alt="img" />
-                    M.V.Sc.
-                  </p>
-                </div>
-              </div>
-              </Link>
-            </div>
-            {/* Doctor Card 3 */}
-            <div className="col-xl-3 col-lg-4 col-md-6">
-            <Link to="/doctorsDetails">
-              <div className="doc_post">
-                <div
-                  className="doc_post_pic"
-                  onclick="window.location.href='doctor_details.html';"
-                >
-                  <img
-                    src="https://t4.ftcdn.net/jpg/02/60/04/09/360_F_260040900_oO6YW1sHTnKxby4GcjCvtypUCWjnQRg5.jpg"
-                    alt="Dr. Vikash Chauhan"
-                  />
-                </div>
-                <div className="doc_post_content">
-                  <h3 className="doc_name">Dr. Vikash Chauhan</h3>
-                  <p className="doc_specialty">Internal Medicine Specialists</p>
-                  <div className="product__reviews our_expertise_reviews">
-                    <div className="rating">
-                      <i className="fas fa-star" />
-                      <i className="fas fa-star" />
-                      <i className="fas fa-star" />
-                      <i className="fas fa-star" />
-                      <i className="fas fa-star" />
-                    </div>
-                    <span>(48 Reviews)</span>
-                  </div>
-                  <p>Exp : 7 years</p>
-                  <p className="doc__qual">
-                    <img src="assets/img/icon/icon8-degree-48.png" alt="img" />
-                    M.V.Sc.
-                  </p>
-                </div>
-              </div>
-              </Link>
-            </div>
-            {/* Doctor Card 4 */}
-            <div className="col-xl-3 col-lg-4 col-md-6">
-            <Link to="/doctorsDetails">
-              <div className="doc_post">
-                <div className="doc_post_pic">
-                  <img
-                    src="https://static.vecteezy.com/system/resources/thumbnails/028/287/555/small_2x/an-indian-young-female-doctor-isolated-on-green-ai-generated-photo.jpg"
-                    alt="Dr. Mony Bora"
-                  />
-                </div>
-                <div className="doc_post_content">
-                  <h3 className="doc_name">Dr. Mony Bora</h3>
-                  <p className="doc_specialty">
-                    Nutritionists, Ophthalmologists
-                  </p>
-                  <div className="product__reviews our_expertise_reviews">
-                    <div className="rating">
-                      <i className="fas fa-star" />
-                      <i className="fas fa-star" />
-                      <i className="fas fa-star" />
-                      <i className="fas fa-star" />
-                      <i className="fas fa-star" />
-                    </div>
-                    <span>(48 Reviews)</span>
-                  </div>
-                  <p>Exp : 7 years</p>
-                  <p className="doc__qual">
-                    <img src="assets/img/icon/icon8-degree-48.png" alt="img" />
-                    M.V.Sc.
-                  </p>
-                </div>
-              </div>
-              </Link>
-            </div>
+              ))
+            )}
           </div>
         </div>
       </section>

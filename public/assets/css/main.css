@@ -9539,11 +9539,11 @@ background-color: #FFE5D6;
   width: 100%;
   border: 1px solid #E1E4E7;
   background: var(--tg-color-white-default);
-  -webkit-border-radius: 100px;
+  /* -webkit-border-radius: 100px;
   -moz-border-radius: 100px;
   -o-border-radius: 100px;
-  -ms-border-radius: 100px;
-  border-radius: 100px;
+  -ms-border-radius: 100px; */
+  border-radius: 8px;
   font-size: 15px;
   font-weight: 400;
   color: var(--tg-theme-secondary);
@@ -14050,3 +14050,4 @@ blockquote p {
 .donor-checkbox:checked ~ .adoption__form{
   display: block;
 }
+

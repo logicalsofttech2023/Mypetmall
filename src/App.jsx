@@ -15,6 +15,11 @@ import DoctorList from './components/Pages/DoctorList';
 import BlogDetails from './components/Pages/BlogDetails';
 import BlogsList from './components/Pages/BlogsList';
 import AnimalList from './components/Pages/AnimalList';
+import Profile from './components/Pages/Profile';
+import Register from './components/Pages/Register';
+import Login from './components/Pages/Login';
+import VerifyOtp from './components/Pages/VerifyOtp';
+import DocProfile from './components/Pages/DocProfile';
 
 const App = () => {
   return (
@@ -34,6 +39,11 @@ const App = () => {
         <Route path="/blogDetails" element={<BlogDetails />} />
         <Route path="/blogsList" element={<BlogsList />} />
         <Route path="/animalList" element={<AnimalList />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/verifyOtp" element={<VerifyOtp />} />
+        <Route path="/docProfile" element={<DocProfile />} />
       </Routes>
       <Footer />
     </Router>

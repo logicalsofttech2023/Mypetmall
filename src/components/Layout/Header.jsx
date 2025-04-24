@@ -1,7 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const Header = () => {
+  const [token, setToken] = useState(null);
+  const [role, setRole] = useState(null);
+
+  useEffect(() => {
+    const storedToken = localStorage.getItem("token");
+    const storedRole = localStorage.getItem("role");
+    setToken(storedToken);
+    setRole(storedRole);
+  }, []);
+
+  const getProfileLink = () => {
+    if (role === "doctor") return "/docProfile";
+    if (role === "user") return "/profile";
+    return "/profile";
+  };
   return (
     <div>
       {/* Scroll-top */}
@@ -116,18 +131,25 @@ const Header = () => {
                     <div className="col-xl-3 col-lg-3">
                       <div className="tgmenu__action tgmenu__action-three d-none d-lg-block">
                         <ul className="list-wrap">
-                          <li className="header-login">
-                            <a href="account.html">
-                              <i className="flaticon-user" />
-                            </a>
-                          </li>
+                          {token ? (
+                            <li className="header-login">
+                              <Link to={getProfileLink()}>
+                                <i className="flaticon-user" />
+                              </Link>
+                            </li>
+                          ) : (
+                            <li className="header-login">
+                              <Link style={{ fontSize: "14px" }} to="/register">
+                                Login/Register
+                              </Link>
+                            </li>
+                          )}
                           <li className="header-wishlist">
                             <a href="javascript:void(0)">
                               <i className="flaticon-love" />
                             </a>
                           </li>
                           <li className="header-cart header-cart-two">
-                            <strong className="price">$0.00</strong>
                             <Link to="/cart">
                               <i className="flaticon-shopping-bag" />
                               <span>0</span>
